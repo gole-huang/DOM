@@ -1,34 +1,15 @@
-//alert(typeof document.getElementById("UL_ID"));
-/*
-for ( let li of document.getElementsByTagName("li"))
-{
-	//显示文本节点
-	//alert(li.innerHTML);
-	//alert(li.childNodes[0].nodeValue);
-	//显示元素的其中一个属性
-	alert(li.getAttribute("class"));
-}
-*/
-/*
-//给没有包含“class”的li标签加上“class”，并显示包含“class”属性的li标签文本节点
-for ( let lk of document.getElementsByTagName("li"))
-{
-	if ( ! lk.getAttribute("class") ) lk.setAttribute("class","null line") ;
-}
-for ( let lk of document.getElementsByTagName("li"))
-{
-	if ( lk.getAttribute("class") ) alert ( lk.getAttribute("class") ) ;
-}
-*/
 //确保在窗口加载完文档之后立即执行：
 window.onload = js_after_load;
 
 function js_after_load() {
-	if (document.getElementsByClassName) {
-		for (let pic of document.getElementsByClassName("newPic")) {
-			pic.onclick = function () {
-				show_pic(this);
-				return false;
+	if (document.getElementById && document.getElementsByTagName) //向后兼容
+	{
+		for (let picList of document.getElementById("showPic")) {
+			for (let pic of picList.getElementsByTagName("a")) {
+				pic.onclick = function () {
+					show_pic(this);
+					return false;
+				}
 			}
 		}
 	}
@@ -41,7 +22,4 @@ function show_pic(picLink) {
 		let picTitle = document.getElementById("picTitle")
 		picTitle.innerHTML = picLink.getAttribute("Title");
 	}
-	//不能实现firshChild.nodeValue的功能
-	//document.getElementById("picTitle").firstChild.nodeValue = picLink.getAttribute("Title");
 }
-	//window.open("http://www.baidu.com","BaiDu","width=640 height=480");
