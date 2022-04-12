@@ -2,18 +2,16 @@
 window.onload = js_after_load;
 
 function js_after_load() {
-	if (document.getElementById && document.getElementsByTagName) //向后兼容
-	{
-		for (let picList of document.getElementById("showPic")) {
-			for (let pic of picList.getElementsByTagName("a")) {
-				pic.onclick = function () {
-					show_pic(this);
-					return false;
-				}
-			}
+	//if (!document.getElementById || !document.getElementsByTagName) return false;//向后兼容
+	let picList = document.getElementById("showPic").childNodes;
+	for (let pic of picList.getElementsByTagName("a")) {
+		pic.onclick = function () {
+			show_pic(this);
+			return false;
 		}
 	}
 }
+
 //把展位的图片替换成待显示的图片
 function show_pic(picLink) {
 	if (document.getElementById && picLink.innerHTML) {
