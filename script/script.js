@@ -2,9 +2,10 @@
 window.onload = js_after_load;
 
 function js_after_load() {
-	//if (!document.getElementById || !document.getElementsByTagName) return false;//向后兼容
-	let picList = document.getElementById("showPic").childNodes;
-	for (let pic of picList.getElementsByTagName("a")) {
+	if (!document.getElementById || !document.getElementsByTagName) return false;	//向后兼容
+	//DOM方法两个get不能分开写
+	let picList = document.getElementById("showPic").getElementsByTagName("a");
+	for (let pic of picList) {
 		pic.onclick = function () {
 			show_pic(this);
 			return false;
