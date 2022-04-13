@@ -17,8 +17,15 @@ function addOnLoad(event) {
 function js_after_load() {
 	try {
 		let picList = document.getElementById("showPic").getElementsByTagName("a");	//DOM方法两个get不能分开写
+		/*	//IE 11不支持for of循环，只支持for i++循环；
 		for (let pic of picList) {
 			pic.onclick = function () {
+				return show_pic(this);
+			};
+		}
+		*/
+		for (let i = 0 ; i < picList.length; i++) {
+			picList[i].onclick = function () {
 				return show_pic(this);
 			}
 		}
