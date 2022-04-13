@@ -24,10 +24,14 @@ ul {
 li {
 	float: left;
 	padding: 1em;
-	list-style: none;
 }
 
 img {
 	display:block;
 	clear:both;
+}
+
+#showPic {
+	list-style: none;
+	display: inline;
 }
