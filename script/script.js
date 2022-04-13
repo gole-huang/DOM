@@ -1,8 +1,23 @@
 //确保在窗口加载完文档之后立即执行：
-window.onload = js_after_load;
+//window.onload = js_after_load;
+addOnLoad(js_after_load);
+
+function addOnLoad(event) {
+	if (typeof window.onload != 'function') {
+		window.onload = event;
+	}
+	else {
+		let oldOnLoad = window.onload;
+		window.onload = function () {
+			oldOnLoad();
+			event();
+		}
+	}
+	//return false;
+}
 
 function js_after_load() {
-	if ( !document.getElementById || !document.getElementsByTagName) return false;	//向后兼容
+	if (!document.getElementById || !document.getElementsByTagName) return false;	//向后兼容
 	//DOM方法两个get不能分开写
 	let picList = document.getElementById("showPic").getElementsByTagName("a");
 	for (let pic of picList) {
@@ -15,9 +30,9 @@ function js_after_load() {
 
 //把展位的图片替换成待显示的图片
 function show_pic(picLink) {
-	if ( !document.getElementById || !picLink.innerHTML ) return false;	//向后兼容
-		let bnk = document.getElementById("bnk");
-		bnk.setAttribute("src", picLink.getAttribute("href"));
-		let picTitle = document.getElementById("picTitle")
-		picTitle.innerHTML = picLink.getAttribute("Title");
+	if (!document.getElementById || !picLink.innerHTML) return false;	//向后兼容
+	let bnk = document.getElementById("bnk");
+	bnk.setAttribute("src", picLink.getAttribute("href"));
+	let picTitle = document.getElementById("picTitle")
+	picTitle.innerHTML = picLink.getAttribute("Title");
 }
