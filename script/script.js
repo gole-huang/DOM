@@ -19,8 +19,7 @@ function js_after_load() {
 		let picList = document.getElementById("showPic").getElementsByTagName("a");	//DOM方法两个get不能分开写
 		for (let pic of picList) {
 			pic.onclick = function () {
-				show_pic(this);
-				return false;
+				return show_pic(this);
 			}
 		}
 	} catch (err) {
@@ -35,7 +34,9 @@ function show_pic(picLink) {
 		let picTitle = document.getElementById("picTitle");
 		bnk.setAttribute("src", picLink.getAttribute("href"));
 		picTitle.innerHTML = picLink.getAttribute("Title");
+		return false;
 	} catch (err) {
 		alert(err.message);
+		return true;
 	}
 }
