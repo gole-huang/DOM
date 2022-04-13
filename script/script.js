@@ -1,7 +1,7 @@
 //确保在窗口加载完文档之后立即执行：
-//window.onload = js_after_load;
 addOnLoad(js_after_load);
 
+//使用递归方式添加window.onload动作，否则只会执行最后一个window.onload动作；
 function addOnLoad(event) {
 	if (typeof window.onload != 'function') {
 		window.onload = event;
@@ -13,7 +13,6 @@ function addOnLoad(event) {
 			event();
 		}
 	}
-	//return false;
 }
 
 function js_after_load() {
