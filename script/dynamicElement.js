@@ -20,6 +20,7 @@ function addParagraph(text) {
     p.appendChild(t);
     document.body.appendChild(p);
 }
+
 StrongText("Hello World");
 addEmphasisText("Hello World");
 //添加带有“加粗”和“斜体”的文本
