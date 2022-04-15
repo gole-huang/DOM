@@ -13,52 +13,6 @@ function addNodeAndID(nodeName, id) {
     node.setAttribute("id", id);
     document.body.appendChild(node);
 }
-/*addParagraph("Hello World");
-function addParagraph(text) {
-    let p = document.createElement("p");
-    let t = document.createTextNode(text);
-    p.appendChild(t);
-    document.body.appendChild(p);
-}
-
-StrongText("Hello World");
-addEmphasisText("Hello World");
-//添加带有“加粗”和“斜体”的文本
-function addStrongText(text) {
-    let p = document.createElement("p");
-    let t = document.createTextNode(text);
-    let strong = document.createElement("strong");
-    strong.appendChild(t);
-    p.appendChild(strong);
-    document.body.appendChild(p);
-}
-
-function addEmphasisText(text) {
-    let p = document.createElement("p");
-    let t = document.createTextNode(text);
-    let em = document.createElement("em");
-    em.appendChild(t);
-    p.appendChild(em);
-    document.body.appendChild(p);
-}
-*/
-/*
-* TODOs : 在一个文本节点内添加一个加粗的文本，添加一个斜体的文本；
-
-function modTextStrong(id, text) {
-    let p = document.getElementById(id);
-    p.innerHTML = p.innerHTML.replace(text, `<strong>${text}</strong>`);
-}
-function modTextEmphasis(id, text) {
-    let p = document.getElementById(id);
-    p.innerHTML = p.innerHTML.replace(text, `<em>${text}</em>`);
-}
-
-addOnLoadEvent(addNodeAndID("p", "p1"));
-addOnLoadEvent(document.getElementById("p1").innerHTML = "Hello,My name is Gole.Nice to meet you.");
-addOnLoadEvent(modTextStrong("p1", "Gole"));
-addOnLoadEvent(modTextEmphasis("p1", "Nice to meet you."));
-*/
 
 function modTextWithStrong(id, strongText) {
     if (document.getElementById(id) == null) {
@@ -110,12 +64,17 @@ function modTextWithEmphasis(id, emphasisText) {
     return true;
 }
 
+/*
+		<img id="bnk" width="640" height="480" alt="show pic" />
+		<strong id="picTitle"></strong>
+*/
 function test(){
-    addNodeAndID("p", "p1");
-    let str = document.createTextNode("Hello,My name is Gole.Nice to meet you.");
-    let p = document.getElementById("p1");
-    p.appendChild(str);
-    modTextWithEmphasis("p1", "meet you");
+    addNodeAndID("img", "bnk");
+    let img = document.getElementById("img");
+    img.setAttribute("width", "640");
+    img.setAttribute("height", "480");
+    img.setAttribute("alt", "show pic");
+    addNodeAndID("strong", "picTitle");
 }
 
 addOnLoadEvent(test);

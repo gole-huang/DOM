@@ -1,5 +1,6 @@
 //确保在窗口加载完文档之后立即执行：
-addOnLoad(js_after_load);
+addOnLoad(addImgAndTitle);
+addOnLoad(showPicByJs);
 
 function addOnLoad(event) {
 	if (typeof window.onload != 'function') {
@@ -14,7 +15,7 @@ function addOnLoad(event) {
 	}
 }	//使用递归方式添加window.onload动作，否则只会执行最后一个window.onload动作；
 
-function js_after_load() {
+function showPicByJs() {
 	try {
 		let picList = document.getElementById("showPic").getElementsByTagName("a");	//DOM方法两个get不能分开写
 		//IE 11不支持for of循环，只支持for循环；
@@ -45,4 +46,20 @@ function show_pic(picLink) {
 		alert(err.message);
 		return true;
 	}
+}
+
+function addNodeAndID(nodeName, id) {
+    let node = document.createElement(nodeName);
+    node.setAttribute("id", id);
+    document.body.appendChild(node);
+}
+
+function addImgAndTitle(){
+	addNodeAndID("img", "bnk");
+	let img = document.getElementById("bnk");
+	img.setAttribute("width", "640");
+	img.setAttribute("height", "480");
+	img.setAttribute("alt", "show pic");
+	document.body.appendChild(img);
+	addNodeAndID("strong", "picTitle");
 }
