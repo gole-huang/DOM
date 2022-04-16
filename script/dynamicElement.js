@@ -8,24 +8,39 @@ function addOnLoadEvent(event) {
         event();
     }
 }
+// todo: Add an element with an "ID" attribute
 function addNodeAndID(nodeName, id) {
     let node = document.createElement(nodeName);
     node.setAttribute("id", id);
     document.body.appendChild(node);
 }
 
+// todo: Add an element with an "ID" attribute before another element
+function addNodeAndIdBefore(nodeName, id, targetName) {
+    let node = document.createElement(nodeName);
+    node.setAttribute("id", id);
+    try {
+        let targetNode = document.getElementsByTagName(targetName)[0];
+        targetNode.parentNode.insertBefore(node, targetNode);
+    }
+    catch (e) {
+        alert(e.ToString());
+    }
+}
+
+// todo: Modify a textnode with "strong" element
 function modTextWithStrong(id, strongText) {
     if (document.getElementById(id) == null) {
         alert("id is not exist");
         return false;
     }
     let p = document.getElementById(id);
-    let wholeText = p.innerHTML;
+    let wholeText = p.firstChild.nodeValue;
     if (wholeText.indexOf(strongText) == -1) {
         alert(strongText + " is not in " + wholeText);
         return false;
     }
-    p.innerHTML = "";
+    p.firstChild.nodeValue = "";
     let st = document.createElement("strong");
     let headText = wholeText.slice(0, wholeText.indexOf(strongText));
     let tailText = wholeText.slice(wholeText.indexOf(strongText) + strongText.length);
@@ -39,18 +54,19 @@ function modTextWithStrong(id, strongText) {
     return true;
 }
 
+// todo: Modify a textnode with "emphasis" element
 function modTextWithEmphasis(id, emphasisText) {
     if (document.getElementById(id) == null) {
         alert("id is not exist");
         return false;
     }
     let p = document.getElementById(id);
-    let wholeText = p.innerHTML;
+    let wholeText = p.firstChild.nodeValue;
     if (wholeText.indexOf(emphasisText) == -1) {
         alert(emphasisText + " is not in " + wholeText);
         return false;
     }
-    p.innerHTML = "";
+    p.firstChild.nodeValue = "";
     let em = document.createElement("em");
     let headText = wholeText.slice(0, wholeText.indexOf(emphasisText));
     let tailText = wholeText.slice(wholeText.indexOf(emphasisText) + emphasisText.length);
@@ -64,17 +80,13 @@ function modTextWithEmphasis(id, emphasisText) {
     return true;
 }
 
-/*
-		<img id="bnk" width="640" height="480" alt="show pic" />
-		<strong id="picTitle"></strong>
-*/
-function test(){
-    addNodeAndID("img", "bnk");
+function test() {
+    addNodeAndIdBefore("strong", "picTitle", "ul");
+    addNodeAndIdBefore("img", "bnk", "ul");
     let img = document.getElementById("img");
     img.setAttribute("width", "640");
     img.setAttribute("height", "480");
     img.setAttribute("alt", "show pic");
-    addNodeAndID("strong", "picTitle");
 }
 
 addOnLoadEvent(test);
